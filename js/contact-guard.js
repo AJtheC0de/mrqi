@@ -1,18 +1,14 @@
 (() => {
-  const mark = String.fromCharCode(64);
-  const dot = String.fromCharCode(46);
+  const contacts = {
+    main: [105, 110, 102, 111, 64, 103, 101, 98, 97, 101, 117, 100, 101, 116, 101, 99, 104, 110, 105, 107, 45, 109, 117, 114, 105, 113, 105, 46, 100, 101],
+  };
 
   document.querySelectorAll(".protected-mail").forEach((node) => {
     node.addEventListener("click", () => {
-      const target = [
-        node.dataset.local,
-        mark,
-        node.dataset.hostA,
-        "-",
-        node.dataset.hostB,
-        dot,
-        node.dataset.hostC,
-      ].join("");
+      const chars = contacts[node.dataset.contactKey];
+      if (!chars) return;
+
+      const target = String.fromCharCode(...chars);
 
       const label = node.querySelector("strong") || node;
       label.textContent = target;

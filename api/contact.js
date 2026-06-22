@@ -1,15 +1,92 @@
 const buckets = new Map();
 
-const blockedTerms = [
+const SPAM_WORDS = [
+  "seo",
+  "seo paket",
+  "seo package",
+  "seo service",
+  "seo services",
+  "suchmaschinenoptimierung",
+  "search engine optimization",
+  "backlink",
+  "backlinks",
+  "linkbuilding",
+  "link building",
+  "keyword ranking",
+  "google ranking",
+  "google rankings",
+  "ranking verbessern",
+  "google bewertung",
+  "google bewertungen",
+  "google review",
+  "google reviews",
+  "google rating",
+  "google ratings",
+  "5 sterne bewertung",
+  "5 star review",
+  "bewertungen kaufen",
+  "buy reviews",
+  "trustpilot",
+  "webdesign",
+  "web design",
+  "webdesigner",
+  "website redesign",
+  "website design",
+  "website development",
+  "web development",
+  "neue website",
+  "new website",
+  "homepage erstellen",
+  "redesign your website",
+  "marketing agentur",
+  "marketing agency",
+  "digital marketing",
+  "online marketing",
+  "social media marketing",
+  "lead generation",
+  "leadgenerierung",
+  "generate leads",
+  "mehr kunden",
+  "more customers",
+  "increase traffic",
+  "increase leads",
+  "google ads",
+  "facebook ads",
+  "instagram ads",
+  "ppc campaign",
+  "email marketing",
+  "ai automation",
+  "ki automatisierung",
+  "ai agency",
+  "ki agentur",
+  "chatgpt",
+  "chatbot",
+  "virtual assistant",
+  "guest post",
+  "sponsored post",
+  "partnership opportunity",
+  "business proposal",
+  "quick question",
+  "i found your website",
+  "improve your website",
+  "grow your business",
+  "telegram",
+  "whatsapp marketing",
   "casino",
   "crypto",
-  "viagra",
+  "forex",
   "loan",
+  "kredit",
+  "viagra",
   "porn",
-  "seo backlink",
-  "rank higher",
-  "whatsapp marketing",
-  "telegram",
+];
+
+const BLOCKED_REPLY_DOMAINS = [
+  "outlookindia.com",
+  "yandex.com",
+  "mail.ru",
+  "163.com",
+  "qq.com",
 ];
 
 function clientIp(req) {
@@ -36,13 +113,45 @@ function allowed(ip) {
   return current.count <= maxHits;
 }
 
-function badPayload(body) {
-  const text = [body.name, body.reply, body.phone, body.trade, body.message]
+function textFromBody(body) {
+  return [body.name, body.reply, body.phone, body.trade, body.message]
     .filter(Boolean)
     .join(" ")
     .toLowerCase();
+}
 
-  return blockedTerms.some((term) => text.includes(term));
+function countMatches(text, pattern) {
+  return (text.match(pattern) || []).length;
+}
+
+function badPayload(body) {
+  const text = textFromBody(body);
+  const reply = String(body.reply || "").toLowerCase();
+  const urlCount = countMatches(text, /\b(?:https?:\/\/|www\.)\S+/gi);
+  const likelyLinkCount = countMatches(text, /\b[\w.-]+\.(?:com|de|net|org|info|biz|io|ru|cn|co|uk|eu)\b/gi);
+  const emailCount = countMatches(text, /\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b/gi);
+
+  if (urlCount > 0 || likelyLinkCount > 3 || emailCount > 3) {
+    return true;
+  }
+
+  if (BLOCKED_REPLY_DOMAINS.some((domain) => reply.endsWith(domain) || reply.includes(`@${domain}`))) {
+    return true;
+  }
+
+  return SPAM_WORDS.some((term) => text.includes(term));
+}
+
+function parseBody(req) {
+  if (!req.body) return {};
+  if (typeof req.body === "string") {
+    try {
+      return JSON.parse(req.body);
+    } catch {
+      return {};
+    }
+  }
+  return req.body;
 }
 
 async function verifyTurnstile(token, ip) {
@@ -84,7 +193,7 @@ module.exports = async function handler(req, res) {
     return res.status(429).json({ ok: false });
   }
 
-  const body = req.body || {};
+  const body = parseBody(req);
   const started = Number(body.started || 0);
   const elapsed = Date.now() - started;
 
