@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.gebaeudetechnik-muriqi.de/sitemap.xml

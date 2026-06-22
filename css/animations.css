@@ -1,0 +1,52 @@
+.load-fade {
+  opacity: 0;
+  transform: translateY(18px);
+  animation: fade-up 700ms ease forwards;
+}
+
+.load-delay-1 {
+  animation-delay: 80ms;
+}
+
+.load-delay-2 {
+  animation-delay: 160ms;
+}
+
+.load-delay-3 {
+  animation-delay: 240ms;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 550ms ease-out, transform 550ms ease-out;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes fade-up {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+  }
+
+  .load-fade,
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}

@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Kontaktieren Sie Gebäudetechnik Muriqi für Heizung, Sanitär, Klima und Solar in München. Anfrage senden, anrufen oder Route planen.">
+    <title>Kontakt | Gebäudetechnik Muriqi</title>
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/nav.css">
+    <link rel="stylesheet" href="/css/animations.css">
+    <link rel="stylesheet" href="/css/pages.css">
+    <link rel="icon" type="image/png" href="/assets/muriqi-logo.png">
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-shell">
+        <a class="brand" href="/"><img src="/assets/muriqi-logo.png" alt="Gebäudetechnik Muriqi"></a>
+        <nav class="nav-links"><a class="nav-link" href="/">Startseite</a><div class="dropdown"><button class="dropdown-trigger" type="button">Leistungen ▾</button><div class="dropdown-panel glass"><div class="dropdown-grid"><a class="dropdown-item" href="/leistungen/#heizung"><span class="nav-icon"><img src="/assets/Heizung.png" alt=""></span><span><strong>Heizung</strong><span>Effiziente Wärmesysteme</span></span></a><a class="dropdown-item" href="/leistungen/#sanitaer"><span class="nav-icon"><img src="/assets/Sanitär.png" alt=""></span><span><strong>Sanitär</strong><span>Bad & Installation</span></span></a><a class="dropdown-item" href="/leistungen/#klima"><span class="nav-icon"><img src="/assets/klima.png" alt=""></span><span><strong>Klima</strong><span>Lüftung & Kühlung</span></span></a><a class="dropdown-item" href="/leistungen/#solar"><span class="nav-icon"><img src="/assets/solar.png" alt=""></span><span><strong>Solar/PV</strong><span>Energie vom Dach</span></span></a></div></div></div><a class="nav-link" href="/team/">Über Uns</a><a class="nav-link active" href="/kontakt/">Kontakt</a></nav>
+        <a class="btn btn-primary header-cta" href="/kontakt/">Anfrage senden</a>
+        <button class="menu-toggle" type="button" aria-label="Menü öffnen" aria-expanded="false"><span></span><span></span><span></span></button>
+      </div>
+      <nav class="mobile-menu"><a href="/">Startseite</a><a href="/leistungen/">Leistungen</a><a href="/team/">Über Uns</a><a href="/kontakt/">Kontakt</a></nav>
+    </header>
+
+    <main>
+      <section class="page-hero">
+        <div class="container">
+          <p class="breadcrumb">Startseite / Kontakt</p>
+          <p class="eyebrow reveal">Projektanfrage</p>
+          <h1 class="section-title reveal">Erzählen Sie uns von Ihrem Projekt.</h1>
+        </div>
+      </section>
+
+      <section class="section-tight">
+        <div class="container contact-grid">
+          <form class="form-card glass reveal contact-form" method="post" action="/api/contact" novalidate>
+            <div class="field"><label for="name">Name</label><input id="name" name="name" autocomplete="name"></div>
+            <div class="field"><label for="reply">E-Mail</label><input id="reply" name="reply" type="text" autocomplete="off"></div>
+            <div class="field"><label for="phone">Telefon</label><input id="phone" name="phone" autocomplete="tel"></div>
+            <div class="field"><label for="trade">Gewünschtes Gewerk</label><select id="trade" name="trade"><option>Heizung</option><option>Sanitär</option><option>Klima</option><option>Solar</option><option>Sonstiges</option></select></div>
+            <div class="field"><label for="message">Nachricht</label><textarea id="message" name="message"></textarea></div>
+            <div class="field bot-check" aria-hidden="true"><label for="company_url">Website</label><input id="company_url" name="company_url" tabindex="-1" autocomplete="off"></div>
+            <input type="hidden" name="started" value="">
+            <input type="hidden" name="turnstileToken" value="">
+            <p class="form-status" aria-live="polite"></p>
+            <p style="margin-top:24px"><button class="btn btn-primary" type="submit">Anfrage senden</button></p>
+          </form>
+          <aside class="info-card glass reveal">
+            <div class="map-frame">
+              <iframe title="Karte: Gebäudetechnik Muriqi, Zornedinger Straße 18, 81671 München" loading="lazy" src="https://www.openstreetmap.org/export/embed.html?bbox=11.6200%2C48.1180%2C11.6350%2C48.1260&layer=mapnik&marker=48.1220%2C11.6275"></iframe>
+            </div>
+            <div class="contact-info-list">
+              <p class="eyebrow">Standort</p>
+              <h2>Zornedinger Straße 18</h2>
+              <p>81671 München<br>Deutschland</p>
+              <p>Telefon: +49 176 / 328 322 26<br>Schreiben Sie uns über das Formular oder nutzen Sie den geschützten Kontaktlink unten.<br>Öffnungszeiten: Montag bis Freitag, 08:00-17:00 Uhr</p>
+              <button class="quick-link protected-mail" type="button" data-local="info" data-host-a="gebaeudetechnik" data-host-b="muriqi" data-host-c="de"><span>E-Mail</span><strong>Adresse anzeigen</strong></button>
+              <a class="quick-link" href="https://www.openstreetmap.org/search?query=Zornedinger%20Stra%C3%9Fe%2018%2C%2081671%20M%C3%BCnchen%2C%20Deutschland" target="_blank" rel="noopener"><span>Karte öffnen</span><strong>Route planen</strong></a>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div><img src="/assets/muriqi-logo-white.png" alt="Gebäudetechnik Muriqi"><p>Premium-Installationen für Heizung, Sanitär, Klima und nachhaltige Energiesysteme.</p></div>
+          <div><h3>Quick Links</h3><a href="/">Startseite</a><a href="/leistungen/">Leistungen</a><a href="/team/">Über Uns</a><a href="/kontakt/">Kontakt</a></div>
+          <div><h3>Leistungen</h3><a href="/leistungen/#heizung">Heizungstechnik</a><a href="/leistungen/#sanitaer">Sanitär & Bäder</a><a href="/leistungen/#klima">Klima & Lüftung</a><a href="/leistungen/#solar">Solar & Photovoltaik</a></div>
+          <div><h3>Kontakt</h3><span>+49 176 / 328 322 26</span><button class="footer-mail protected-mail" type="button" data-local="info" data-host-a="gebaeudetechnik" data-host-b="muriqi" data-host-c="de">Adresse anzeigen</button><span>Mo-Fr 08:00-17:00</span></div>
+        </div>
+        <div class="footer-bottom"><p>© 2026 Gebäudetechnik Muriqi.</p><p>Meisterhafte Gebäudetechnik & Nachhaltige Systeme</p></div>
+      </div>
+    </footer>
+    <script src="/js/nav.js"></script>
+    <script src="/js/reveal.js"></script>
+    <script src="/js/contact-guard.js"></script>
+  </body>
+</html>
